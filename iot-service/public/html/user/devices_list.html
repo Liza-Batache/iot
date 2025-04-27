@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Appareils IoT</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #007BFF;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Bouton retour */
+        .back-button {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-button i {
+            font-size: 1.5em;
+            color: #007BFF;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Barre de recherche */
+        .search-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .search-bar input {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .search-bar button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #00BFFF, #007BFF);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 86, 179, 0.4);
+        }
+
+        /* Boutons d'action */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #00BFFF, #007BFF);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th,
+        table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            color: red;
+        }
+
+        #result.success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.location.href='/html/user/dashboard_user.html';">
+            <i>&larr;</i>
+        </button>
+        <header>
+            <h1>Liste des Appareils IoT</h1>
+        </header>
+        <main>
+            <div class="search-bar">
+                <input type="text" placeholder="Rechercher un appareil..." id="searchDevice">
+                <button onclick="searchDevice()">🔍</button>
+                <button onclick="resetSearch()">🔄</button>
+            </div>
+            <div class="action-buttons">
+                <a href="../add_device.html" class="action-button">Ajouter</a>
+                <a href="edit_device.html" class="action-button">Modifier</a>
+                <a href="../delete_device.html" class="action-button">Supprimer</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Adresse IP</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody id="devicesGrid">
+                    <!-- Contenu inséré dynamiquement -->
+                </tbody>
+            </table>
+            <p id="result"></p>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const devicesGridBody = document.querySelector('#devicesGrid');
+            const resultMessage = document.getElementById('result');
+
+            try {
+                const response = await fetch('/devices'); // Endpoint pour récupérer les appareils
+                if (!response.ok) throw new Error('Impossible de récupérer les appareils.');
+
+                const devices = await response.json();
+                if (devices.length === 0) {
+                    resultMessage.textContent = 'Aucun appareil trouvé.';
+                    resultMessage.style.color = 'red';
+                    return;
+                }
+
+                devices.forEach(device => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${device.id}</td>
+                        <td>${device.name}</td>
+                        <td>${device.ip_address}</td>
+                        <td>${device.status ? 'Actif' : 'Inactif'}</td>
+                    `;
+                    devicesGridBody.appendChild(row);
+                });
+
+                //resultMessage.textContent = `${devices.length} appareils trouvés.`;
+                resultMessage.classList.add('success');
+            } catch (error) {
+                console.error(error);
+                resultMessage.textContent = 'Erreur lors de la récupération des appareils.';
+            }
+        });
+
+        function searchDevice() {
+            const input = document.getElementById('searchDevice').value.toLowerCase();
+            const rows = document.querySelectorAll('#devicesGrid tr');
+            rows.forEach(row => {
+                const match = Array.from(row.cells).some(cell =>
+                    cell.textContent.toLowerCase().includes(input)
+                );
+                row.style.display = match ? '' : 'none';
+            });
+        }
+
+        function resetSearch() {
+            const input = document.getElementById('searchDevice');
+            input.value = ''; // Réinitialise le champ de recherche
+
+            const rows = document.querySelectorAll('#devicesGrid tr');
+            rows.forEach(row => {
+                row.style.display = ''; // Réaffiche toutes les lignes
+            });
+
+            const resultMessage = document.getElementById('result');
+            resultMessage.textContent = ''; // Réinitialise le message de résultat
+        }
+    </script>
+</body>
+</html>

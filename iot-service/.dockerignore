@@ -1,0 +1,4 @@
+# Ne pas inclure les modules et les secrets
+node_modules
+.env
+.DS_Store

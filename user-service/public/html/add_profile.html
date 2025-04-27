@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Profil</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        /* Conteneur principal */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            text-align: center;
+        }
+
+        /* Bouton retour */
+        .back-button {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-button i {
+            font-size: 1.5em;
+            color: #007BFF;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Titre */
+        header h1 {
+            font-size: 2em;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        /* Formulaire */
+        #addProfileForm {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Bouton Ajouter */
+        button[type="submit"] {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: #ffffff;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(135deg, #0056b3, #007BFF);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 86, 179, 0.4);
+        }
+
+        /* Message de résultat */
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        #result.success {
+            color: green;
+        }
+
+        #result.error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.location.href='/html/admin/users_list.html';">
+            <i>&larr;</i>
+        </button>
+        <header>
+            <h1>Ajouter un Profil</h1>
+        </header>
+        <main>
+            <form id="addProfileForm">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur :</label>
+                    <input type="text" id="username" name="username" placeholder="Entrez le nom d'utilisateur" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" placeholder="Entrez l'adresse email" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Rôle :</label>
+                    <select id="role" name="role" required>
+                        <option value="admin">Admin</option>
+                        <option value="user">Utilisateur</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" placeholder="Entrez le mot de passe" required>
+                </div>
+                <button type="submit">Ajouter</button>
+            </form>
+            <p id="result"></p>
+        </main>
+    </div>
+    <script>
+        document.getElementById('addProfileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const role = document.getElementById('role').value;
+            const password = document.getElementById('password').value;
+            const resultMessage = document.getElementById('result');
+
+            try {
+                const response = await fetch('/admin/profiles/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, role, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultMessage.textContent = 'Profil ajouté avec succès.';
+                    resultMessage.className = 'success';
+                } else {
+                    resultMessage.textContent = data.message || 'Erreur lors de l\'ajout du profil.';
+                    resultMessage.className = 'error';
+                }
+            } catch (error) {
+                resultMessage.textContent = 'Erreur de connexion au serveur.';
+                resultMessage.className = 'error';
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>

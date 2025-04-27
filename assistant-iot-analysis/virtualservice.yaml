@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: analysis-virtualservice
+spec:
+  hosts:
+  - "analysis.local"
+  gateways:
+  - analysis-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /analysis
+    route:
+    - destination:
+        host: analysis-service
+        port:
+          number: 4000   

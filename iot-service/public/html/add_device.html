@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Appareil IoT</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Bouton retour */
+        .back-button {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-button i {
+            font-size: 1.5em;
+            color: #007BFF;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #007BFF;
+            font-size: 2em;
+        }
+
+        /* Formulaire */
+        #addDeviceForm {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        /* Bouton ajouter */
+        button {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: #ffffff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #0056b3, #007BFF);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Message */
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #result.success {
+            color: #007BFF;
+        }
+
+        #result.error {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.location.href='/html/user/devices_list.html';">
+            <i>&larr;</i>
+        </button>
+        <header>
+            <h1>Ajouter un Appareil IoT</h1>
+        </header>
+        <main>
+            <form id="addDeviceForm">
+                <div class="form-group">
+                    <label for="deviceName">Nom de l'Appareil :</label>
+                    <input type="text" id="deviceName" name="deviceName" placeholder="Entrez le nom de l'appareil" required>
+                </div>
+                <div class="form-group">
+                    <label for="deviceIP">Adresse IP :</label>
+                    <input type="text" id="deviceIP" name="deviceIP" placeholder="Entrez l'adresse IP" required>
+                </div>
+                <button type="submit">Ajouter</button>
+            </form>
+            <p id="result"></p>
+        </main>
+    </div>
+    <script src="/js/script_add_device.js"></script>
+</body>
+</html>

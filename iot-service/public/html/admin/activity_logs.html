@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journaux d'Activités</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Bouton retour */
+        .back-button {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-button i {
+            font-size: 1.5em;
+            color: #007BFF;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #007BFF;
+            font-size: 2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            text-transform: uppercase;
+        }
+
+        table td:first-child {
+            text-align: left; /* Alignement à gauche pour la colonne Action */
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.location.href='/html/admin/dashboard_admin.html';">
+            <i>&larr;</i>
+        </button>
+        <header>
+            <h1>Journaux d'Activités</h1>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Utilisateur</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="logsTableBody">
+                    <!-- Les journaux seront insérés ici via JavaScript -->
+                </tbody>
+            </table>
+            <p id="emptyMessage" class="empty-message" style="display: none;">Aucun journal d'activités disponible.</p>
+        </main>
+    </div>
+    <script src="/js/admin/script_logs.js"></script>
+</body>
+</html>

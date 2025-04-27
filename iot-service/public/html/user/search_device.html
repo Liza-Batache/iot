@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rechercher un Appareil</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rechercher un Appareil par ID</h1>
+        </header>
+        <main>
+            <form id="searchDeviceForm">
+                <label for="deviceId">ID de l'appareil :</label>
+                <input type="number" id="deviceId" name="deviceId" placeholder="Entrez l'ID de l'appareil" required>
+                <button type="submit">Rechercher</button>
+            </form>
+            <div id="resultContainer" class="device-card" style="display: none;">
+                <h2 id="deviceName"></h2>
+                <p id="deviceIP"></p>
+                <p id="deviceID"></p>
+            </div>
+            <p id="error" style="color: red;"></p>
+        </main>
+    </div>
+    <script src="/js/user/script_search_device.js"></script>
+</body>
+</html>

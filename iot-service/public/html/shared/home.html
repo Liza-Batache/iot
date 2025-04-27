@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Assistant de Sécurité IoT</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f7;
+            height: 100vh; /* Prend toute la hauteur de l'écran */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        header h1 {
+            color: #007BFF;
+            font-size: 2em;
+            margin-bottom: 5px; /* Réduction des marges */
+        }
+
+        header p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 15px; /* Réduction des marges */
+        }
+
+        /* Illustration */
+        .hero-image {
+            max-width: 60%; /* Image plus petite */
+            height: auto;
+            margin-bottom: 15px; /* Réduction des marges */
+            border-radius: 10px;
+        }
+
+        /* Grille pour les liens */
+        .links-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Espacement réduit */
+            flex-wrap: wrap;
+        }
+
+        /* Style des boutons de liens */
+        .link-button {
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 10px 20px; /* Boutons plus petits */
+            border: none;
+            border-radius: 5px;
+            font-size: 1em; /* Taille réduite */
+            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(0, 123, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Effet au survol */
+        .link-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 15px rgba(0, 86, 179, 0.3);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 15px; /* Réduction des marges */
+            font-size: 0.8em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bienvenue dans l'Assistant de Sécurité IoT</h1>
+            <p>Analysez et améliorez la sécurité de vos appareils connectés.</p>
+        </header>
+        <main>
+            <!-- Image illustrative -->
+            <img src="../../images/hero-image.png" alt="Sécurité IoT" class="hero-image">
+            <div class="links-grid">
+                <a href="/html/shared/login.html" class="link-button">Connexion</a>
+            </div>
+        </main>
+        <footer>
+            © 2025 Assistant de Sécurité IoT. Tous droits réservés.
+        </footer>
+    </div>
+</body>
+</html>

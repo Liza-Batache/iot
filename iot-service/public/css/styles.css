@@ -1,0 +1,102 @@
+/* Styles généraux */
+body { 
+    font-family: 'Arial', sans-serif;
+    background-color: #e6f2ff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 768px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* En-tête */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+    color: #007bff;
+}
+
+/* Formulaire */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.form-container label {
+    font-size: 18px;
+    color: #333;
+    text-align: left;
+    width: 70%;
+}
+
+.form-container input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Résultat */
+#result {
+    font-size: 16px;
+    color: #333;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Liste des appareils (déjà existant) */
+.device-list {
+    text-align: center;
+}
+
+.device-list h2 {
+    font-size: 20px;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.device-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.device-list ul li {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.device-list ul li i {
+    margin-right: 10px;
+    color: #007bff;
+}

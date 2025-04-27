@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan des Vulnérabilités</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #007BFF;
+        }
+
+        .scan-button {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: block;
+            margin: 0 auto;
+            transition: background 0.3s ease;
+        }
+
+        .scan-button:hover {
+            background: linear-gradient(135deg, #0056b3, #007BFF);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table th {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-button i {
+            font-size: 1.5em;
+            color: #007BFF;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.location.href='/html/user/dashboard_user.html';">
+            <i>&larr;</i>
+        </button>
+        <header>
+            <h1>Scan des Vulnérabilités</h1>
+        </header>
+        <main>
+            <button class="scan-button" onclick="scanVulnerabilities()">Lancer le Scan</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Appareil</th>
+                        <th>Type de Vulnérabilité</th>
+                        <th>Détails</th>
+                    </tr>
+                </thead>
+                <tbody id="vulnerabilitiesTableBody">
+                    <!-- Les vulnérabilités seront insérées ici -->
+                </tbody>
+            </table>
+            <p class="empty-message" id="emptyMessage" style="display: none;">Aucune vulnérabilité trouvée pour le moment.</p>
+        </main>
+    </div>
+    <script src="/js/user/script_scan_vulnerabilities.js"></script>
+</body>
+</html>

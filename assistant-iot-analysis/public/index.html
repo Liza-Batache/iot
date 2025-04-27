@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Assistant IoT Analysis</title>
+</head>
+<body>
+  <h1>Bienvenue sur l'Assistant de Sécurité IoT 🔐</h1>
+  <p>Cette interface analyse la sécurité des appareils connectés.</p>
+
+  <button onclick="analyze()">Lancer l’analyse</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function analyze() {
+      const res = await fetch("/analyze");
+      const data = await res.json();
+      document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>

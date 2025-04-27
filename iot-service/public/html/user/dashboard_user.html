@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Utilisateur</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        /* Conteneur principal */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Bouton déconnexion */
+        .logout {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background-color: #ffffff;
+            color: #007BFF;
+            padding: 10px 20px;
+            border: 1px solid #007BFF;
+            border-radius: 50px;
+            font-size: 1rem;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logout:hover {
+            background-color: #007BFF;
+            color: #ffffff;
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Header */
+        header h1 {
+            font-size: 2.5em;
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        /* Statistiques */
+        .dashboard-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            border-radius: 15px;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-width: 200px;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.4);
+        }
+
+        .stat-card h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .stat-card p {
+            font-size: 1.1rem;
+        }
+
+        /* Boutons d'action */
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #00BFFF, #007BFF);
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 191, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Centrage du conteneur principal */
+        .page-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <a href="/html/shared/home.html" class="logout">Déconnexion</a>
+    <div class="page-wrapper">
+        <div class="container">
+            <header>
+                <h1>Tableau de Bord Utilisateur</h1>
+                <p>Bienvenue sur votre tableau de bord. Gérez vos appareils connectés et détectez les vulnérabilités.</p>
+            </header>
+            <main>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <h2 id="deviceCount">0</h2>
+                        <p>Appareils IoT</p>
+                    </div>
+                    <div class="stat-card">
+                        <h2 id="alertCount">0</h2>
+                        <p>Alertes Actives</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="./scan_vulnerabilities.html" class="action-button">Détecter Vulnérabilités</a>
+                    <a href="devices_list.html" class="action-button">Voir la Liste des Appareils</a>
+                    <a href="/html/shared/home.html" class="logout" onclick="handleLogout()">Déconnexion</a>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="/js/user/script_dashboard_user.js"></script>
+</body>
+</html>

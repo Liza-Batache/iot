@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Appareils IoT (Fake DB)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .status-active {
+      color: green;
+      font-weight: bold;
+    }
+
+    .status-inactive {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>📋 Liste des Appareils IoT (Simulation)</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Type</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Capteur Température</td>
+        <td>sensor</td>
+        <td class="status-active">active</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Caméra IP</td>
+        <td>camera</td>
+        <td class="status-inactive">inactive</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Détecteur Fumée</td>
+        <td>sensor</td>
+        <td class="status-active">active</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Capteur Température</td>
+        <td>sensor</td>
+        <td class="status-active">active</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Caméra IP</td>
+        <td>camera</td>
+        <td class="status-inactive">inactive</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Détecteur Fumée</td>
+        <td>sensor</td>
+        <td class="status-active">active</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
